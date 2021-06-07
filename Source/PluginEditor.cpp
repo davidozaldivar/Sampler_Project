@@ -13,9 +13,11 @@
 Sampler_ProjectAudioProcessorEditor::Sampler_ProjectAudioProcessorEditor (Sampler_ProjectAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    mLoadButton.onClick = [&]() { audioProcessor.loadFile();  };
+    
+    addAndMakeVisible(mLoadButton);
+    
+    setSize (200, 200);
 }
 
 Sampler_ProjectAudioProcessorEditor::~Sampler_ProjectAudioProcessorEditor()
@@ -35,6 +37,5 @@ void Sampler_ProjectAudioProcessorEditor::paint (juce::Graphics& g)
 
 void Sampler_ProjectAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    mLoadButton.setBounds(getWidth() / 2 - 50, getHeight() / 2 - 50, 100, 100);
 }
